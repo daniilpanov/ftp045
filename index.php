@@ -1,4 +1,19 @@
-﻿<!doctype html>
+﻿<?php
+define(
+    "HOMEDIR",
+    (str_replace("\\", "/", __DIR__) . "/")
+);
+
+require_once "config/loading.php";
+
+use loading as l;
+
+define("PATHS", (l\loadconfig("paths")));
+
+l\loadconfig("autoload");
+?>
+
+<!doctype html>
 <html lang="ru">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -35,14 +50,12 @@
 
     <title>Группа компаний «СЕВИРИНА»: home.</title>
 
-    <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap-grid.min.css">
-
-    <script rel="script" src="frameworks/jquery/jquery.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <script rel="script" src="public/js/script.js"></script>
+    <?php
+    l\linkframework("frameworks/bootstrap/css/", "css");
+    l\linkframework("frameworks/bootstrap/js/", "js");
+    l\linkcss("style");
+    l\includescript("script");
+    ?>
 </head>
 <body bgcolor="#F0DDBF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="MM_preloadImages('images/indexa_02.gif','images/indexa_03.gif','images/indexa_04.gif')">
 <div class="www3"></div>
