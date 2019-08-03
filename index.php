@@ -2,10 +2,9 @@
 <html lang="ru">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="Keywords" content="St. Petersburg, Санкт-Петербург, Питер,Design, interior, Interieur, интерьер, дизайн, квартира, загородный дом, кафе, бар, клуб, бассейн, аквариум, эскиз, портфолио, portfolio, недвижимость, ремонт, гостиная, столовая, детская, ванная, туалет, спальня, кабинет, Homepage, Kontakt, consulting, мебель, дверь, кафе, скатерть, декорирование, столовое белье, чехлы, шторы, мебель, лестницы, предметы интерьера из натурального дерева, скатерти для ресторанов, напероны, дорожки, салфетки ">
+	<meta name="Keywords" content="St. Petersburg, Санкт-Петербург, Питер, Design, interior, Interieur, интерьер, дизайн, квартира, загородный дом, кафе, бар, клуб, бассейн, аквариум, эскиз, портфолио, portfolio, недвижимость, ремонт, гостиная, столовая, детская, ванная, туалет, спальня, кабинет, Homepage, Kontakt, consulting, мебель, дверь, кафе, скатерть, декорирование, столовое белье, чехлы, шторы, мебель, лестницы, предметы интерьера из натурального дерева, скатерти для ресторанов, напероны, дорожки, салфетки ">
 
 	<meta name="Publisher" content="ООО «Русский Дом МЛК», mddesign-foto">
-	<meta name="Web-Design" content="Design: Maria Drozdetskaya, mddesign-foto, Copyright Maria Drozdetskaya. Jede Anwendung ist verboten und strafpflicht!">
 	<meta name="Content-language" content="ru">
 	<script type="text/JavaScript">
 		<!--
@@ -33,8 +32,17 @@
 		}
 		//-->
 	</script>
-<title>Группа компаний «СЕВИРИНА»: home.</title>
-<link rel="stylesheet" type="text/css" href="public/css/style.css" />
+
+    <title>Группа компаний «СЕВИРИНА»: home.</title>
+
+    <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap-grid.min.css">
+
+    <script rel="script" src="frameworks/jquery/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <script rel="script" src="public/js/script.js"></script>
 </head>
 <body bgcolor="#F0DDBF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="MM_preloadImages('images/indexa_02.gif','images/indexa_03.gif','images/indexa_04.gif')">
 <div class="www3"></div>

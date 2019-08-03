@@ -1,39 +1,39 @@
 .www1
 {
-	position:absolute;
-	width:1002px;
-	height:100%;
-	top:0;
-	background-color:#F0DDBF;
-	left:0;
+	position: absolute;
+	width: 1002px;
+	height: 100%;
+	top: 0;
+	background-color: #F0DDBF;
+	left: 0;
 }
 .www3
 {
-	position:absolute;
-	width:100%;
-	height:192px;
-	top:0;
-	background-color:#C3AC84;
-	left:0;
+	position: absolute;
+	width: 100%;
+	height: 192px;
+	top: 0;
+	background-color: #C3AC84;
+	left: 0;
 }
 .www4
 {
-	position:absolute;
-	width:323px;
-	height:100%;
-	top:0;
-	background-color:#E89522;
-	left:0;
-	font-size:1px;
+	position: absolute;
+	width: 323px;
+	height: 100%;
+	top: 0;
+	background-color: #E89522;
+	left: 0;
+	font-size: 1px;
 }
 
 h1
 {
-	color:#990000;
+	color: #990000;
 }
 h2, h3, h4
 {
-	color:#015b64;
+	color: #015b64;
 }
 
 th, td
