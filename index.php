@@ -49,7 +49,7 @@
 	</tr>
 	<tr>
 		<td colspan="2" width="69" height="38" id="menu">
-			<a href="index.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image22','','res/images/indexa_02.gif',1)" id="home">
+			<a href="index.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image22','','res/images/indexa_02.gif',1)" id="home">
 				HOME
 				<!--<img src="res/images/indexn_02.gif" alt="Стартовая" name="Image22" width="69" height="38" border="0">-->
 			</a>

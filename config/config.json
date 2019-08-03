@@ -1,0 +1,9 @@
+{
+    "database":
+    {
+        "db": "for_father",
+        "host": "localhost",
+        "user": "php",
+        "password": "12345"
+    }
+}
