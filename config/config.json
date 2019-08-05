@@ -4,6 +4,7 @@
         "db": "for_father",
         "host": "localhost",
         "user": "php",
-        "password": "12345"
+        "password": "12345",
+        "charset": "utf8"
     }
 }

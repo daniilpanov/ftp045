@@ -62,8 +62,6 @@ function showview(string $viewname)
 
 function link(string $path, string $rel="stylesheet", $type="text/css")
 {
-    $path = HOMEDIR . $path;
-
     echo "<link href='$path' rel='$rel'";
     if ($type !== null)
     {
@@ -81,14 +79,13 @@ function linkcss(string $cssname, string $path="public/css/", string $type="css"
 function includescript(string $src, string $path="public/js/", string $type="js")
 {
     checkdirend($path);
-    $src = HOMEDIR . $path . $src;
+    $src = $path . $src;
     echo "<script src='$src.$type' rel='script' type='text/javascript'></script>\n";
 }
 
 function linkframework(string $dir, string $filetype)
 {
     checkdirend($dir);
-    $dir = HOMEDIR . $dir;
     $framework = opendir($dir);
 
     while ($framework_item = readdir($framework))
