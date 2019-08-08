@@ -51,9 +51,19 @@ a:active, a:visited
     text-align: center;
 }
 
+main div
+{
+    display: inline-block;
+}
+
+main div *
+{
+    display: block;
+}
+
 #menu
 {
-    margin-top: -25px;
+    margin: 0;
     text-align: left;
     background-color: #000033;
 }
@@ -65,11 +75,15 @@ a:active, a:visited
     text-align: center;
     color: darkorange;
     margin: 2px;
-    padding: 5px;
+    padding: 10px;
     text-decoration: none;
     display: inline-block;
-    height: 38px;
+    height: auto;
     background-color: #000033;
+
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
 
     transition-duration: 1s;
     -o-transition-duration: 1s;
@@ -86,9 +100,19 @@ a:active, a:visited
     -o-transition-duration: 0.5s;
     -moz-transition-duration: 0.5s;
     -webkit-transition-duration: 0.5s;
+
+    box-shadow: inset 3px 3px 6px 2px #000033;
+    -o-box-shadow: inset 3px 3px 6px 2px #000033;
+    -moz-box-shadow: inset 3px 3px 6px 2px #000033;
+    -webkit-box-shadow: inset 3px 3px 6px 2px #000033;
 }
 
 #brand img
 {
     box-shadow: 0 0 10px 4px #645a4e;
+    -o-box-shadow: 0 0 10px 4px #645a4e;
+    -moz-box-shadow: 0 0 10px 4px #645a4e;
+    -webkit-box-shadow: 0 0 10px 4px #645a4e;
+
+    width: 100%;
 }

@@ -83,28 +83,39 @@ function includescript(string $src, string $path="public/js/", string $type="js"
     echo "<script src='$src.$type' rel='script' type='text/javascript'></script>\n";
 }
 
-function linkframework(string $dir, string $filetype)
+function linkframework(string $dir, array $filetypes=[], bool $min=true)
 {
     checkdirend($dir);
     $framework = opendir($dir);
 
     while ($framework_item = readdir($framework))
     {
+        if (is_dir($dir . $framework_item) && $framework_item != "." && $framework_item != "..")
+        {
+            linkframework($dir . $framework_item, $filetypes, $min);
+        }
+
         $filename_seq = explode(".", $framework_item);
         $type = end($filename_seq);
-        $min = ($filename_seq[count($filename_seq)-2] == "min");
+        if ($min)
+        {
+            $key_with_min = count($filename_seq) - 2;
+            $is_min = ($key_with_min > -1)
+                ? $filename_seq[$key_with_min] == "min"
+                : false;
+        }
 
-        if ($type == $filetype && $min)
+        if (in_array($type, $filetypes) && (!$min || $is_min))
         {
             if (
-                $filetype == "js"
-                || $filetype == "coffee"
-                || $filetype == "ts"
+                in_array("js", $filetypes)
+                || in_array("coffee", $filetypes)
+                || in_array("ts", $filetypes)
             )
             {
                 echo "<script rel='script' type='text/javascript' src='$dir$framework_item'></script>\n\t";
             }
-            elseif ($filetype == "css" || $filetype == "scss")
+            elseif (in_array("css", $filetypes) || in_array("scss", $filetypes))
             {
                 echo "<link rel='stylesheet' type='text/css' href='$dir$framework_item'>\n\t";
             }

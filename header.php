@@ -15,6 +15,4 @@
     </div>
 </div>-->
 
-<div id="brand">
-    <img src="res/images/brand.jpg" alt="Panoff дизайн &reg;">
-</div>
+<div id="brand"></div>
