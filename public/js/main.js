@@ -2,8 +2,18 @@
 $(document).ready(function ()
 {
     //
-    var canvas = createBrand();
-
+    var brand = Brand();
     //
-    // alignMain(canvas);
+    brand.createBrand();
+    //
+    var brand_data = brand.brand,
+        onload = (function ()
+        {
+            //
+            var main = Main(brand_data);
+            main.alignSidebar();
+        });
+    //
+    brand.setOnload(onload);
+    brand.setRepaint(onload);
 });

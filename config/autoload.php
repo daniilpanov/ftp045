@@ -1,28 +1,23 @@
 <?php
 /** @noinspection PhpUndefinedMethodInspection */
 
-use app\Config as C;
+//use app\Config as C;
 use loading as l;
-use dbtools\Db;
+//use dbtools\Db;
 
 spl_autoload_register(function ($namespace)
 {
     $nsc_segments = explode("\\", $namespace);
     $classname = end($nsc_segments);
-    $parent_namespace = str_replace($classname, "", $namespace);
+    $nsc = str_replace($classname, "", $namespace);
 
-    foreach (\PATHS as $nsc => $path)
+    if (key_exists(($nsc = "\\" . $nsc), \PATHS))
     {
-        if ("\\" . $parent_namespace == $nsc)
-        {
-            l\loadclass($path . $classname);
-            return;
-        }
+        l\loadclass(\PATHS[$nsc] . $classname);
+        return;
     }
 
-    $path = str_replace("\\", "/", $namespace);
-
-    l\loadclass($path);
+    l\loadclass($namespace);
 });
 
 function object_to_array(stdClass $obj): array
@@ -72,7 +67,7 @@ if ($pass !== null)
 
 if (($instance = Db::seekInstance($params)) === null)
 {
-    $instance = Db::initNewQuery(
+    $instance = Db::initNewConnection(
         C::getHost(), C::getDb(),
         C::getUser(), C::getPassword()
     );

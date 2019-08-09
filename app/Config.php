@@ -2,7 +2,7 @@
 
 namespace app;
 
-
+// TODO: Create an objects data (add vars $key and $value to class Config (not static!) and insert to array data an object of this class)
 class Config
 {
     public function __construct($key, $value)

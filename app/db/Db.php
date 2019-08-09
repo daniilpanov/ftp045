@@ -5,6 +5,7 @@ namespace dbtools;
 
 class Db
 {
+    /** @var self $current_instance */
     private static $current_instance = null;
     private static $instances = [];
     private static $settings = [];
@@ -22,24 +23,28 @@ class Db
         );
     }
 
-    public function connect(): bool
+    public function query(string $sql, array $params): \PDOStatement
     {
-
+        if ($params)
+        {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute($params);
+            return $sth;
+        }
+        else
+        {
+            return $this->pdo->query($sql);
+        }
     }
 
-    public function query(string $sql): \PDOStatement
-    {
-
-    }
-
-    public static function initNewQuery(string $host, string $dbname, string $user, string $password=null): self
+    public static function initNewConnection(string $host, string $dbname, string $user, string $password=null): self
     {
         return self::$instances["$user@$host%$dbname"] = new self($host, $dbname, $user, $password);
     }
 
-    public static function setCurrentInstance(self $instance): bool
+    public static function setCurrentInstance(self $instance)
     {
-
+        self::$current_instance = $instance;
     }
 
     public static function seekInstance(array $params)
@@ -56,5 +61,10 @@ class Db
         }
 
         return null;
+    }
+
+    public static function sql(string $query, array $params=[]): \PDOStatement
+    {
+        return self::$current_instance->query($query, $params);
     }
 }
