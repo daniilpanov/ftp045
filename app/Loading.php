@@ -5,12 +5,22 @@ namespace app;
 
 class Loading
 {
+    private static $home_dir = "";
+
+    /**
+     * @param string $home_dir
+     */
+    public static function setHomeDir(string $home_dir)
+    {
+        self::$home_dir = $home_dir;
+    }
+
     private $path;
     private $once = true, $fail_on_errors = true;
 
     public function __construct(string $path)
     {
-        $this->path = $path;
+        $this->path = self::$home_dir . $path;
     }
 
     public function once(bool $once): self

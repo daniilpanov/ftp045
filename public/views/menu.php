@@ -1,4 +1,12 @@
-<a href="index.php">HOME</a>
-<a href="textile.html">TEXTILE</a>
-<a href="portfolio.html">GALLERY</a>
-<a href="contact.html">CONTACTS</a>
+<?php
+
+$data = \app\controllers\FactoryControllers
+    ::getController("Pages")
+    ->getDataForView("menu");
+
+foreach ($data as $datum)
+{
+    $datum['name'] = mb_strtoupper($datum['name']);
+    echo "<a aria-roledescription='{$datum['type']}' href='?page={$datum['id']}'>{$datum['name']}</a>";
+}
+?>

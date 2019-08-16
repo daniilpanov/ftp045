@@ -11,9 +11,17 @@ $(document).ready(function ()
         {
             //
             var main = Main(brand_data);
-            main.alignSidebar();
+            main.alignLeftSidebar();
+            main.alignContent();
+            main.alignRightSidebar();
         });
     //
     brand.setOnload(onload);
     brand.setRepaint(onload);
+
+    //
+    var bind_menu = BindMenu();
+
+    bind_menu.bindLeftMenu();
+    bind_menu.bindRightMenu();
 });

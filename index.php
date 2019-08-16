@@ -8,6 +8,8 @@ require_once "config/loading.php";
 
 use loading as l;
 
+l\configurepaths();
+
 define("PATHS", (l\loadconfig("paths")));
 
 l\loadconfig("autoload");
@@ -86,22 +88,33 @@ Top Products:
     </div>
 end Top Products
 -->
-<header>
-    <?php
-    l\loadphp("header")
+<?php
+if (!isset($_GET['debug']))
+{
     ?>
-</header>
+    <header>
+        <?php
+        l\loadphp("header")
+        ?>
+    </header>
 
-<main>
-    <?php
-    l\loadphp("main");
-    ?>
-</main>
+    <main>
+        <?php
+        l\loadphp("main");
+        ?>
+    </main>
 
-<footer>
+    <footer>
+        <?php
+        l\loadphp("footer");
+        ?>
+    </footer>
     <?php
-    l\loadphp("footer");
-    ?>
-</footer>
+}
+?>
 </body>
+<?php
+\app\controllers\FactoryControllers::printSerializeControllers();
+\app\models\FactoryModels::printSerializedModels();
+?>
 </html>

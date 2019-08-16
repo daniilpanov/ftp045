@@ -2,14 +2,23 @@
 use loading as l;
 ?>
 
-<div id="sidebar">
+<div id="left-sidebar">
     <?php
-    l\showview("sidebar");
+    l\showview("left-sidebar");
     ?>
 </div>
 
 <div id="content">
     <?php
-    l\showview("content");
+    \app\Router::showMainView();
     ?>
+</div>
+
+<div id="right-sidebar">
+    <button id="open-sidebar"><i class="icon icon-tasks"></i></button>
+    <div id="right-sidebar-content">
+        <?php
+        l\showview("right-sidebar");
+        ?>
+    </div>
 </div>

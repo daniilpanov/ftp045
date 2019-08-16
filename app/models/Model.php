@@ -65,4 +65,9 @@ abstract class Model
 
         return false;
     }
+
+    public function setData(array $data)
+    {
+        $this->data = $data;
+    }
 }

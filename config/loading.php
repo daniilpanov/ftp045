@@ -2,7 +2,7 @@
 
 namespace loading;
 
-require_once HOMEDIR . "app/Loading.php";
+require_once ((defined("HOMEDIR")) ? HOMEDIR : "") . "app/Loading.php";
 
 use app\Loading as L;
 
@@ -18,6 +18,11 @@ function checkdirend(string &$dirname, string $end="/")
     }
 }
 
+function configurepaths($home=HOMEDIR)
+{
+    L::setHomeDir($home);
+}
+
 function load
 (
     string $filename,
@@ -26,7 +31,7 @@ function load
     bool $fail_on_errors=true
 )
 {
-    return (new L(HOMEDIR . $filename . "." . $type))
+    return (new L($filename . "." . $type))
         ->once($once)
         ->failOnErrors($fail_on_errors)
         ->load();

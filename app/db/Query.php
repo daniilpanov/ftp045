@@ -13,7 +13,17 @@ abstract class Query
         return $this->sql;
     }
 
-    public function getResult($fetch=false)
+    public function params(array $params)
+    {
+        $this->params = $params;
+    }
+
+    public function param($name, $value)
+    {
+        $this->params[$name] = $value;
+    }
+
+    public function getResult($fetch=true)
     {
         $res = Db::sql($this->getSQL(), $this->params);
 
@@ -23,5 +33,10 @@ abstract class Query
         }
 
         return $res;
+    }
+
+    public static function select($select, string $table): SelectQ
+    {
+        return new SelectQ($select, $table);
     }
 }

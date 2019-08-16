@@ -9,37 +9,57 @@ class Db
     private static $current_instance = null;
     private static $instances = [];
     private static $settings = [];
-    private static $options = [];
+    // Опции для инициализации подключения к БД
+    private static $options = [
+        \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
+        \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+    ];
 
     private $pdo = null;
     private $params = [];
 
-    private function __construct(string $host, string $dbname, string $user, string $password)
+    private function __construct(string $host, string $dbname, string $user, string $password, $charset)
     {
         $this->pdo = new \PDO(
-            "mysql:host={$host};dbname={$dbname};charset="
-                . self::$settings['charset'],
+            ("mysql:host={$host};dbname={$dbname};charset="
+                . (
+                    isset(self::$settings['charset'])
+                        ? self::$settings['charset']
+                        : ($charset !== null)
+                            ? $charset
+                            : "utf8"
+                )
+            ),
             $user, $password, self::$options
         );
+
+        if ($charset !== null)
+        {
+            $this->pdo->query("SET NAMES utf8");
+        }
     }
 
-    public function query(string $sql, array $params): \PDOStatement
+    public function query(string $sql, array $params)
     {
+        $sth = null;
+
         if ($params)
         {
             $sth = $this->pdo->prepare($sql);
+
             $sth->execute($params);
-            return $sth;
         }
         else
         {
-            return $this->pdo->query($sql);
+            $sth = $this->pdo->query($sql);
         }
+
+        return $sth;
     }
 
-    public static function initNewConnection(string $host, string $dbname, string $user, string $password=null): self
+    public static function initNewConnection(string $host, string $dbname, string $user, string $password=null, $charset=null): self
     {
-        return self::$instances["$user@$host%$dbname"] = new self($host, $dbname, $user, $password);
+        return self::$instances["$user@$host%$dbname"] = new self($host, $dbname, $user, $password, $charset);
     }
 
     public static function setCurrentInstance(self $instance)
@@ -63,8 +83,13 @@ class Db
         return null;
     }
 
-    public static function sql(string $query, array $params=[]): \PDOStatement
+    public static function getInstance(): self
     {
-        return self::$current_instance->query($query, $params);
+        return self::$current_instance;
+    }
+
+    public static function sql(string $sql, array $params=[])
+    {
+        return self::getInstance()->query($sql, $params);
     }
 }

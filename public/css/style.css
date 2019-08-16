@@ -1,6 +1,50 @@
+::-webkit-scrollbar
+{
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 14px;
+}
+::-webkit-scrollbar-track
+{
+    background-color: rgb(105, 105, 105);
+
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+
+    border-radius: 12px;
+}
+::-webkit-scrollbar-thumb
+{
+    background-color: #f0ddbf;
+
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+
+    border-radius: 12px;
+}
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment
+{
+    height: 30px;
+    display: block;
+    background-color: transparent;
+}
+::-webkit-scrollbar:window-inactive,
+::-webkit-scrollbar-track
+{
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
 body
 {
     background-color: #f0ddbf;
+    margin-bottom: 30px;
+}
+
+header
+{
+    background-color: #c3ac84;
 }
 
 footer
@@ -33,18 +77,17 @@ a
 }
 a:hover
 {
-    color: #C01319;
+    color: #c01319;
     text-decoration: underline;
 }
-a:active, a:visited
+a:active
 {
-    color: #750512;
-    text-decoration: none;
+    color: #750512 !important;
+    text-decoration: none !important;
 }
 
 #top-products
 {
-    background-color: #f0ddbf;
     margin: 2px;
     padding: 2px;
     border: 1px;
@@ -56,6 +99,32 @@ main div
     display: inline-block;
 }
 
+main #left-sidebar
+{
+    float: left;
+    color: white;
+    text-align: center;
+    background-color: #e89522;
+}
+
+main #content
+{
+    margin-left: 20px;
+    height: 100%;
+    float: left;
+}
+
+main #right-sidebar
+{
+    margin-left: 10px;
+    border: 3px black double;
+    padding: 6px;
+    max-width: 10%;
+    min-width: 2.5%;
+    min-height: 15%;
+    overflow-x: auto;
+}
+
 main div *
 {
     display: block;
@@ -65,8 +134,8 @@ main div *
 {
     margin: 0;
     text-align: left;
-    background-color: #000033;
     width: 100%;
+    background-color: #000033;
 }
 
 #menu a
@@ -108,6 +177,14 @@ main div *
     -webkit-box-shadow: inset 3px 3px 6px 2px #000033;
 }
 
+#menu a:visited
+{
+    box-shadow: 0 0 2px 1px #f0ddbf;
+    -o-box-shadow: 0 0 2px 1px #f0ddbf;
+    -moz-box-shadow: 0 0 2px 1px #f0ddbf;
+    -webkit-box-shadow: 0 0 2px 1px #f0ddbf;
+}
+
 #brand img
 {
     box-shadow: 0 0 10px 4px #645a4e;
@@ -116,4 +193,9 @@ main div *
     -webkit-box-shadow: 0 0 10px 4px #645a4e;
 
     width: 100%;
+}
+
+#open-sidebar
+{
+    display: none;
 }

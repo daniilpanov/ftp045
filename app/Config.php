@@ -2,27 +2,49 @@
 
 namespace app;
 
-// TODO: Create an objects data (add vars $key and $value to class Config (not static!) and insert to array data an object of this class)
+
 class Config
 {
-    public function __construct($key, $value)
+    private function __construct()
     {
-        self::$data[$key] = $value;
     }
 
-    private static $data = [];
+    private static $settings = [];
 
-    private static function get($key)
+    public static function get($keys=null)
     {
-        return (isset(self::$data[$key]) ? self::$data[$key] : null);
+        if ($keys === null)
+        {
+            return self::$settings;
+        }
+        elseif(!is_array($keys))
+        {
+            return (isset(self::$settings[$keys]))
+                ? self::$settings[$keys]
+                : null;
+        }
+        else
+        {
+            $value = self::$settings;
+
+            foreach ($keys as $key)
+            {
+                if (isset($value[$key]))
+                {
+                    $value = $value[$key];
+                }
+            }
+
+            return $value;
+        }
     }
 
-    private static function set($key, $value)
+    public static function set($settings)
     {
-        self::$data[$key] = $value;
+        self::$settings = $settings;
     }
 
-    public static function __callStatic($name, $args)
+    /*public static function __callStatic($name, $args)
     {
         if (!method_exists(self::class, $name))
         {
@@ -44,5 +66,5 @@ class Config
                 self::set(mb_strtolower($seq[1]), $args[0]);
             }
         }
-    }
+    }*/
 }
