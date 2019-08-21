@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>It's the test what symbols JSON can't parse</title>
+    <script src="../frameworks/jquery/jquery.min.js"></script>
+</head>
+<body>
+<script>
+    function htmlspecialchars(html)
+    {
+        return html.replace(/&/g, "&amp;")
+                   .replace(/</g, "&lt;")
+                   .replace(/>/g, "&gt;")
+                   .replace(/"/g, "&quot;")
+                   .replace(/'/g, "&#039;")
+                   .replace(/\\/g, "&#92;")
+                   .replace(/\t/g, "&#92;t")
+                   .replace(/\n/g, "&#92;n");
+    }
+
+    var test = '{"one": "' + htmlspecialchars("\t") + '"}';
+
+    try
+    {
+        var obj = JSON.parse(test);
+        alert(obj.one);
+    }
+    catch (e)
+    {
+        alert("Ага!");
+        alert(test);
+        alert(e.toString());
+    }
+</script>
+</body>
+</html>

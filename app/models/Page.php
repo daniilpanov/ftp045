@@ -11,4 +11,9 @@ class Page extends Model
     {
         $this->setData(Query::select("*", "pages")->where("id", $id)->getResult());
     }
+
+    public static function initSome($from, $to, $args = [])
+    {
+
+    }
 }

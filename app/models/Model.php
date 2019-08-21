@@ -70,4 +70,6 @@ abstract class Model
     {
         $this->data = $data;
     }
+
+    public abstract static function initSome($from, $to, $args=[]);
 }

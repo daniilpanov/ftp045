@@ -39,7 +39,7 @@
 body
 {
     background-color: #f0ddbf;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 header
@@ -109,9 +109,17 @@ main #left-sidebar
 
 main #content
 {
-    margin-left: 20px;
+    padding: 20px;
     height: 100%;
     float: left;
+    position: absolute;
+    z-index: 0;
+
+    background-image: url("../../res/images/new_photos/background/винтовая 5_набросок.jpg");
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 main #right-sidebar
@@ -125,7 +133,8 @@ main #right-sidebar
     overflow-x: auto;
 }
 
-main div *
+main #left-sidebar *,
+main #right-sidebar *
 {
     display: block;
 }

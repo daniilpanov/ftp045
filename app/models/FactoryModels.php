@@ -19,6 +19,17 @@ class FactoryModels
     }
 
     /**
+     * @param mixed $models
+     */
+    public static function setUnserializedModels($models)
+    {
+        if ($models)
+        {
+            self::$models = $models;
+        }
+    }
+
+    /**
      * Создание моделей
      * @param string $modelname
      * @param array|mixed $params
@@ -252,17 +263,21 @@ class FactoryModels
         return null;
     }
 
-    public static function printSerializedModels()
+    /*public static function printSerializedModels()
     {
         echo "\n<div id='models'>\n";
 
         echo "\t<div id='withoutID'>\n";
 
-        $models = self::$models['withoutID'];
-        foreach ($models as $name => $model)
+        if (isset(self::$models['withoutID']))
         {
-            $serialized_model = serialize($model);
-            echo "\t\t<input type='hidden' name='$name' value='$serialized_model'>\n";
+            $models = self::$models['withoutID'];
+
+            foreach ($models as $name => $model)
+            {
+                $serialized_model = serialize($model);
+                echo "\t\t<input type='hidden' name='$name' value='$serialized_model'>\n";
+            }
         }
 
         echo "\t</div>\n\n";
@@ -272,14 +287,17 @@ class FactoryModels
         $models = self::$models;
         unset($models['withoutID']);
 
-        foreach ($models as $name => $model)
+        if (!empty($models))
         {
-            $serialized_model = serialize($model);
-            echo "\t\t<input type='hidden' name='$name' value='$serialized_model'>\n";
+            foreach ($models as $name => $model)
+            {
+                $serialized_model = serialize($model);
+                echo "\t\t<input type='hidden' name='$name' value='$serialized_model'>\n";
+            }
         }
 
         echo "\t</div>\n";
 
         echo "</div>\n";
-    }
+    }*/
 }

@@ -24,7 +24,7 @@ l\loadconfig("autoload");
 	<meta name="Publisher" content="ООО «Русский Дом МЛК», mddesign-foto">
 	<meta name="Content-language" content="ru">
 
-    <title>Группа компаний «СЕВИРИНА»: home.</title>
+    <title>Дизайн студия «Panoff design»: home.</title>
 
     <?php
     l\linkframework("frameworks/bootstrap/", ["css", "js"]);
@@ -114,7 +114,30 @@ if (!isset($_GET['debug']))
 ?>
 </body>
 <?php
-\app\controllers\FactoryControllers::printSerializeControllers();
-\app\models\FactoryModels::printSerializedModels();
+echo "<div id='pages' hidden>";
+$pages_export = \app\controllers\FactoryControllers
+        ::getController("Pages")
+        ->getData(null, ["id", "content", "title"]);
+
+function array_export(array $arr)
+{
+    foreach ($arr as $index => $item)
+    {
+        if (is_array($item))
+        {
+            echo "<div class='group-exported-to-js' aria-roledescription='$index'>\n";
+            array_export($item);
+            echo "</div>\n";
+        }
+        else
+        {
+            echo "<input class='item-exported-to-js' type='hidden' name='$index' value='$item'>\n";
+        }
+    }
+}
+
+array_export($pages_export);
+
+echo "</div>";
 ?>
 </html>

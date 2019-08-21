@@ -25,4 +25,9 @@ class FilesData extends Model
 
         closedir($this->handle);
     }
+
+    public static function initSome($from, $to, $args = [])
+    {
+        // TODO: Implement initSome() method.
+    }
 }

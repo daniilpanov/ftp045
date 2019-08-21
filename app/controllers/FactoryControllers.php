@@ -15,6 +15,17 @@ class FactoryControllers
         return self::$controllers;
     }
 
+    /**
+     * @param array $controllers
+     */
+    public static function setUnserializedControllers(array $controllers)
+    {
+        if ($controllers)
+        {
+            self::$controllers = $controllers;
+        }
+    }
+
     private final function __construct()
     {
     }
@@ -77,30 +88,36 @@ class FactoryControllers
         }
     }
 
-    public static function printSerializeControllers()
+    /*public static function printSerializeControllers()
     {
         echo "\n<div id='controllers'>\n";
 
         echo "\t<div id='" . Controller::SINGLE . "'>\n";
 
-        foreach (self::$controllers[Controller::SINGLE] as $name => $controller)
+        if (isset(self::$controllers[Controller::SINGLE]))
         {
-            $serialized_controller = serialize($controller);
-            echo "\t\t<input type='hidden' name='$name' value='$serialized_controller'>\n";
+            foreach (self::$controllers[Controller::SINGLE] as $name => $controller)
+            {
+                $serialized_controller = serialize($controller);
+                echo "\t\t<input type='hidden' name='$name' value='$serialized_controller'>\n";
+            }
         }
 
         echo "\t</div>\n\n";
 
         echo "\t<div id='" . Controller::UPDATING . "'>";
 
-        foreach (self::$controllers[Controller::UPDATING] as $name => $controller)
+        if (isset(self::$controllers[Controller::UPDATING]))
         {
-            $serialized_controller = serialize($controller);
-            echo "\t\t<input type='hidden' name='$name' value='$serialized_controller'>\n";
+            foreach (self::$controllers[Controller::UPDATING] as $name => $controller)
+            {
+                $serialized_controller = serialize($controller);
+                echo "\t\t<input type='hidden' name='$name' value='$serialized_controller'>\n";
+            }
         }
 
         echo "\t</div>\n";
 
         echo "</div>\n";
-    }
+    }*/
 }
