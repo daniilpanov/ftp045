@@ -2,11 +2,13 @@
 
 namespace app\models;
 
-
+use app\Factory;
 use dbtools\Query;
 
-class FactoryModels
+
+class FactoryModels extends Factory
 {
+    protected static $namespace = "\\app\\models\\";
     // Все модели
     private static $models;
 
@@ -37,37 +39,32 @@ class FactoryModels
      */
     public static function createModel(string $modelname, $params=[])
     {
-        // Пробуем создать объект для реализации рефлексий для модели
-        try
+        // Полное имя модели (с учётом пространства имён)
+        $modelname = self::$namespace . $modelname;
+        // Если такой класс не существует,
+        if (!class_exists($modelname))
         {
-            // Создаём
-            $reflection = new \ReflectionClass(
-                "\\app\\models\\" . $modelname
-            );
-
-            // С помощью рекурсии создаём объект модели и передаём аргументы в конструктор
-            $model = $reflection->newInstanceArgs($params);
-            // Если у модели есть ID
-            if ($id = $model->getID())
-            {
-                // помещаем её в массив с моделями такого же типа с ID в качестве ключа
-                self::$models[$modelname][$model->getID()] = $model;
-            }
-            // Иначе
-            else
-            {
-                // помещаем её в массив моделей такого же типа, но без ID
-                self::$models['withoutID'][$modelname][] = $model;
-            }
-
-            // Возвращаем модель
-            return $model;
-        }
-        // Если не получилось - возвращаем null
-        catch (\ReflectionException $e)
-        {
+            // возвращаем null
             return null;
         }
+
+        // Создаём объект модели и передаём аргументы в конструктор
+        $model = new $modelname(...$params);
+        // Если у модели есть ID
+        if ($id = $model->getID())
+        {
+            // помещаем её в массив с моделями такого же типа с ID в качестве ключа
+            self::$models[$modelname][$model->getID()] = $model;
+        }
+        // Иначе
+        else
+        {
+            // помещаем её в массив моделей такого же типа, но без ID
+            self::$models['withoutID'][$modelname][] = $model;
+        }
+
+        // Возвращаем модель
+        return $model;
     }
 
     /**
